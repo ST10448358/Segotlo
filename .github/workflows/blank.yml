@@ -1,54 +1,61 @@
-# This is a basic workflow to help you get started with Actions
+name: Android CI & Build
 
-name: Android CI - Build & Test
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build-and-test:
-    # The type of runner that the job will run on
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-     # 1. Get the code from your repository
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    # 2. Set up Java (Android Studio uses Java 17 now)
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
 
-    # 3. Make the gradlew script executable
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-    # 4. Run the Unit Tests (The one we created)
-    - name: Run Unit Tests
-      run: ./gradlew testDebugUnitTest
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
 
-    # 5. Build the Debug APK (This compiles the app)
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest --continue
 
-    # 6. Upload the APK so you can download it from GitHub
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Segotlo-App-Debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload Debug APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: warn
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: ignore
+
+      - name: Upload Lint Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.html
+          if-no-files-found: ignore
