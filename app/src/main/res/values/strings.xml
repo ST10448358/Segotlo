@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Segotlo Academy</string>
+    <string-array name="roles_array">
+        <item>Select Role</item>
+        <item>Coach</item>
+        <item>Player</item>
+        <item>Parent</item>
+        <item>Administrator</item>
+    </string-array>
+    <string name="login_button">Login</string>
+    <string name="help_button_desc">Help</string>
+    <string name="settings_button_desc">Settings</string>
+    <string name="google_sign_in">Sign in with Google</string>
+    <string name="help_title">How it works</string>
+    <string name="help_content">1. Select your role from the dropdown.\n2. Click Login to access your portal.\n3. Use settings to manage your account.</string>
+    <string name="settings_title">User Settings</string>
+    <string name="change_password">Change Password</string>
+    <string name="personal_choices">Personal Choices</string>
+    <string name="save_settings">Save</string>
+</resources>
