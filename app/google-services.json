@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "484885784255",
+    "firebase_url": "https://segotlo-academy-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "segotlo-academy",
+    "storage_bucket": "segotlo-academy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484885784255:android:2a2a9d01026de8a5d1480a",
+        "android_client_info": {
+          "package_name": "com.segotlo.academy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484885784255-kg6v4dbb7aeq1e4iq7itlbf94i56gmhk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.segotlo.academy",
+            "certificate_hash": "0227bc8eeb3c1f971b596313d40824107ab13342"
+          }
+        },
+        {
+          "client_id": "484885784255-u4p9fe267s4kr4io5gllf8q1a3hqgi8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlB7Zt-zneDDCM4Rj08GDL-yWC04U77tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484885784255-u4p9fe267s4kr4io5gllf8q1a3hqgi8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
